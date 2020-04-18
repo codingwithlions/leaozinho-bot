@@ -1,0 +1,27 @@
+{
+  "name": "leaozinho-bot",
+  "version": "1.0.0",
+  "description": "A discord bot made just to have a little fun",
+  "main": "src/index.js",
+  "repository": "https://github.com/codingwithlions/leaozinho-bot.git",
+  "author": "Ricardo Morato Rocha <ricardomorator@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "lint": "node_modules/.bin/eslint src/*js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "husky": "^4.2.5"
+  }
+}
