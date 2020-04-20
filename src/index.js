@@ -1,7 +1,15 @@
 /* eslint-disable no-console */
-const Discord = require('discord.js');
 require('dotenv/config');
 
+// 3rd party
+const Discord = require('discord.js');
+
+// Services
+const { oi } = require('./Controllers/oi');
+const { dilma } = require('./Controllers/dilma');
+const { vtnc } = require('./Controllers/vtnc');
+
+// Config
 const { TOKEN } = process.env;
 const prefix = '/';
 const client = new Discord.Client();
@@ -11,14 +19,28 @@ client.once('ready', () => {
 });
 
 client.on('message', (message) => {
-  if (message.content === `${prefix}ping`) {
-    message.channel.send('PONG!');
-  } else if (message.content === `${prefix}oi` && message.author.id === '230047229203841025') {
-    message.channel.send(`Oi ${message.author.username}, você é lindo`);
-  } else if (message.content === `${prefix}oi`) {
-    message.channel.send(`Oi ${message.author.username}, você é feio`);
-  } else if (message.content === `${prefix}vtnc`) {
-    message.channel.send(`Vai tu ${message.author.username}, FILHO DE RAPARIGA`);
+  const { author, content, channel } = message;
+
+  if (content.substring(0, 1) === prefix) {
+    switch (content) {
+      case `${prefix}ping`:
+        channel.send('PONG!');
+        break;
+      case `${prefix}vtnc`:
+        vtnc(author.username, channel);
+        break;
+      case `${prefix}oi`:
+        oi(author, channel);
+        break;
+      case `${prefix}dilma`:
+        dilma(channel);
+        break;
+      default:
+        message.channel.send(
+          'Que comando legal, quero aprender! (https://github.com/codingwithlions/leaozinho-bot)',
+        );
+        break;
+    }
   }
 });
 
