@@ -13,7 +13,7 @@ client.once('ready', () => {
 client.on('message', (message) => {
   if (message.content === `${prefix}ping`) {
     message.channel.send('PONG!');
-  } else if (message.content === `${prefix}oi` && message.author.username === 'Ricardo Morato Rocha') {
+  } else if (message.content === `${prefix}oi` && message.author.id === '230047229203841025') {
     message.channel.send(`Oi ${message.author.username}, você é lindo`);
   } else if (message.content === `${prefix}oi`) {
     message.channel.send(`Oi ${message.author.username}, você é feio`);
