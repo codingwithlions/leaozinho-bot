@@ -8,6 +8,7 @@ const Discord = require('discord.js');
 const { oi } = require('./Controllers/oi');
 const { dilma } = require('./Controllers/dilma');
 const { vtnc } = require('./Controllers/vtnc');
+const { listCommands } = require('./Controllers/listCommands');
 
 // Config
 const { TOKEN } = process.env;
@@ -34,6 +35,9 @@ client.on('message', (message) => {
         break;
       case `${prefix}dilma`:
         dilma(channel);
+        break;
+      case `${prefix}help`:
+        listCommands(author.username, channel);
         break;
       default:
         message.channel.send(
