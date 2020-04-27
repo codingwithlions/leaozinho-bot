@@ -1,2 +1,2 @@
 # leaozinho-bot
-A discord bot Used on our personal server 🦁
+A discord bot used on our personal server 🦁
