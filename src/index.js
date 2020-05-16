@@ -9,6 +9,7 @@ const { oi } = require('./Controllers/oi');
 const { dilma } = require('./Controllers/dilma');
 const { vtnc } = require('./Controllers/vtnc');
 const { listCommands } = require('./Controllers/listCommands');
+const { dolar } = require('./Controllers/dolar');
 
 // Config
 const { TOKEN } = process.env;
@@ -38,6 +39,9 @@ client.on('message', (message) => {
         break;
       case `${prefix}help`:
         listCommands(author.username, channel);
+        break;
+      case `${prefix}dolar`:
+        dolar(channel);
         break;
       default:
         message.channel.send(
