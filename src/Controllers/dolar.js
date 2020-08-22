@@ -1,8 +1,12 @@
 const axios = require('axios');
+const puppeteer = require('puppeteer');
 
 async function dolar(channel) {
-  const dolarArray = await axios.get('https://economia.awesomeapi.com.br/json/daily/USD-BRL/15');
-  const dolarToday = dolarArray.data[0].high;
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://www.google.com/search?q=dolar');
+  const dolarTodayText = await page.evaluate(() => document.getElementsByClassName('DFlfde SwHCTb')[0].innerHTML);
+  const dolarToday = Number(dolarTodayText.replace(',', '.'));
 
   const pokemonNumber = `${(dolarToday * 100)}`.split('.');
   const pokemonData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber[0]}`);
